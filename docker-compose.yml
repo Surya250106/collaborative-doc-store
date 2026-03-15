@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+
+  mongo:
+    image: mongo:7
+    container_name: wiki-mongo
+    restart: always
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo_data:/data/db
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  api:
+    build: .
+    container_name: wiki-api
+
+    ports:
+      - "5000:5000"
+
+    env_file:
+      - .env
+
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+    restart: always
+
+
+volumes:
+  mongo_data:
