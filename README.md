@@ -107,7 +107,7 @@ Libraries - mongodb - slugify - diff - dotenv
 
 ## 1. Clone Repository
 
-    git clone https://github.com/YOUR_USERNAME/collaborative-document-store.git
+    git clone https://github.com/Surya250106/collaborative-doc-store.git
     cd collaborative-document-store
 
 ------------------------------------------------------------------------
